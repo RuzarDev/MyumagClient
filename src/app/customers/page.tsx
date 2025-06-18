@@ -1,7 +1,7 @@
 'use client';  // This ensures that the component is run on the client side
 
 import { useEffect, useState } from 'react';
-import { Plus, Download, Search, Filter, ChevronDown, Phone, Mail, User, MoreHorizontal } from 'lucide-react';
+import { Plus, Download, Search, Filter, ChevronDown, Phone, Mail, User} from 'lucide-react';
 import DataTable from '@/components/DataTable';
 import { validateToken } from '@/app/utils/validateToken';
 import { useRouter } from 'next/navigation';
@@ -48,7 +48,7 @@ const Page = () => {
     {
       header: 'Customer',
       accessor: 'name',
-      cell: (value: string, row: any) => (
+      cell: (value, row) => (
         <div className="flex items-center">
           <div className="h-9 w-9 rounded-full bg-slate-100 flex items-center justify-center mr-3">
             <User size={16} className="text-slate-500" />
@@ -63,7 +63,7 @@ const Page = () => {
     {
       header: 'Contact',
       accessor: 'Customerphone',
-      cell: (value: string, row: any) => (
+      cell: (value, row) => (
         <div>
           <div className="flex items-center text-slate-600">
             <Phone size={14} className="mr-1" />

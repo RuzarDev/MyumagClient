@@ -1,8 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import * as sea from 'node:sea';
 import api from "@/data/dataBase";
 
 
@@ -26,7 +24,7 @@ const Page = () => {
       console.log('Success:', res.data);
       router.push('/menu');
 
-    } catch (error:any) {
+    } catch (error) {
       console.error('Error:', error.response?.data || error.message);
     }
 

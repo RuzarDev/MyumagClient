@@ -1,9 +1,9 @@
 'use client';
 import React, { useState } from 'react';
-import { parse, getWeek, getMonth } from 'date-fns';
+import { parse } from 'date-fns';
 
 const RevenueChart = ({ data }) => {
-  const [activeTab, setActiveTab] = useState('day');
+  const [activeTab] = useState('day');
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
 
   // Вычисляем общую сумму выручки
@@ -28,7 +28,7 @@ const RevenueChart = ({ data }) => {
   };
 
   // Функция для подсчета суммы по группе
-  const getTotalAmountPerDate = (orders: any[], groupBy: string) => {
+  const getTotalAmountPerDate = (orders) => {
     const result: Record<string, number> = {};
 
     orders.forEach(order => {

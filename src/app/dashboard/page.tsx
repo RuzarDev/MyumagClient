@@ -1,14 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react';
-import {
-  DollarSign,
-  Users,
-  ShoppingBag,
-  CreditCard,
-  TrendingUp,
-  Calendar,
-  ArrowRight
-} from 'lucide-react';
+import { useEffect} from 'react';
 import { useRouter } from 'next/navigation';
 import { validateToken } from '@/app/utils/validateToken';
 import Dashboard from '@/DashBoardComponents/Dashboard';

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { WriteToken } from "@/lib/slices/AuthSlice"
 import { validateToken } from '@/app/utils/validateToken';
 import api from "@/data/dataBase";

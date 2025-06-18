@@ -8,15 +8,12 @@ import {
   ChevronDown,
   Truck,
   Clock,
-  AlertCircle,
-  CheckCircle2,
   MoreHorizontal, X, Eye,
 } from 'lucide-react';
 import DataTable from '@/components/DataTable';
 import AddSupplyDialog from '@/components/AddSupplyDialog';
 import { validateToken } from '@/app/utils/validateToken';
 import { useRouter } from 'next/navigation';
-import axios from 'axios';
 import api from "@/data/dataBase";
 
 interface SupplyOrder {
@@ -84,7 +81,7 @@ const Page = () => {
   const [status, setStatus] = useState('All');
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [orders, setOrders] = useState([]);
-  const [menuData, setMenuData] = useState([]);
+  const [setMenuData] = useState([]);
   const router = useRouter()
   useEffect(() => {
     const checkToken = async () => {
@@ -185,7 +182,7 @@ fetchData()
       header: '',
       accessor: 'id',
       sortable: false,
-      cell: (_: any, row: any) => (
+      cell: (_, row) => (
         <div className="flex items-center space-x-2">
           <button className="p-1 rounded-md hover:bg-slate-100">
             <Eye size={16} className="text-slate-500" />
@@ -293,7 +290,7 @@ d-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
 
               {selectedOrder.items?.length ? (
                 <ul className="space-y-3 max-h-72 overflow-y-auto">
-                  {selectedOrder.items.map((item: any, idx: number) => (
+                  {selectedOrder.items.map((item, idx: number) => (
                     <li key={idx} className="border-b pb-2">
                       <div className="text-slate-800 font-medium">{item.menuItem.name || 'Unnamed item'}</div>
                       <div className="text-sm text-slate-600">

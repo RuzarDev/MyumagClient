@@ -1,7 +1,6 @@
 'use client'
 import React from 'react';
 import DataTable from '@/components/DataTable';
-import { column } from 'stylis';
 
 const Page = () => {
   const columns = [

@@ -1,6 +1,5 @@
 'use client'
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import DataTable from '@/components/DataTable';
 import { Coffee } from 'lucide-react';
 import ModalShift from '@/components/ModalShift';
@@ -33,7 +32,6 @@ type modalShiftState =  {
 const Page = () => {
   const [shifts, setShifts] = useState<shiftState[]>([]);
   const [modalShift, setModalShift] = useState<modalShiftState>({isOpen: false, row: null});
-  const [order, setOrder] = useState([]);
   const onModal = async (row: shiftState) => {
     try {
       const shiftId = Number(row.id)

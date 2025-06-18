@@ -8,10 +8,8 @@ import PaymentModal from '@/components/PaymentModal';
 import ClientPage from '@/components/ClientPage';
 import { OrderItem, Product, Client } from '@/types';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import Modal from '@/components/Modal';
-import { log } from 'node:util';
-import api, {dataBase} from "@/data/dataBase";
+import api from "@/data/dataBase";
 type ShiftItem = {
   id: number; // или string, в зависимости от твоих данных
   // другие поля, если есть
@@ -173,7 +171,7 @@ function Page() {
   }
   const onCloseShift = async ()=>{
   try {
-    const res = await api.post('/posShift/close',{cashDrawer:shift.cashDrawer});
+     await api.post('/posShift/close',{cashDrawer:shift.cashDrawer});
     setShift((prevState)=>{
       return {...prevState, closeModal: false};
     })

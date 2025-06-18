@@ -7,15 +7,11 @@ import {
   Filter,
   ChevronDown,
   Coffee,
-  Edit,
-  MoreHorizontal,
-  Percent
 } from 'lucide-react';
 import DataTable from '@/components/DataTable';
 import { useRouter } from 'next/navigation';
 import { validateToken } from '@/app/utils/validateToken';
 import Link from 'next/link';
-import axios from 'axios';
 import api from "@/data/dataBase";
 
 interface MenuItem {
@@ -108,16 +104,7 @@ const Page = () => {
 
   const categories = ['All', ...new Set(menuData.map(item => item.category))];
 
-  async function deleteMenu(row) {
-    try {
-      const res = api.delete(`/menu/${row.id}`, {
-        data: { row },
-      });
-      setReboot(!reboot);
-    } catch (e) {
-      console.error(e);
-    }
-  }
+
 
   // Фильтрация данных
   const filteredMenuData = menuData.filter(item => {

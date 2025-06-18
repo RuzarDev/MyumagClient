@@ -5,14 +5,11 @@ import {
   Filter, 
   ChevronDown, 
   Package,
-  ArrowDown,
-  ArrowUp,
   AlertCircle
 } from 'lucide-react';
 import DataTable from '@/components/DataTable';
 import { useRouter } from 'next/navigation';
 import { validateToken } from '@/app/utils/validateToken';
-import axios from 'axios';
 import api from "@/data/dataBase";
 
 interface InventoryItem {

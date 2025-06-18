@@ -68,7 +68,6 @@ export default function RegisterPage() {
   const [error, setError] = useState('');
   const router = useRouter();
   const dispatch = useDispatch()
-  const token = useSelector(state => state.auth.token)
 
   useEffect(() => {
     const authorizhationByToken = async () => {
