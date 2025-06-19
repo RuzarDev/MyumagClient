@@ -43,7 +43,6 @@ const StatsCard: React.FC<StatsCardProps> = ({
       <div className="absolute bottom-0 left-0 h-1 w-full bg-gray-100">
         <div 
           className={`h-full ${negative ? 'bg-red-500' : 'bg-green-500'}`
-         //   style={{ width: change.replace(/[^0-9]/g, '') + '%' }}
 
         }
         ></div>

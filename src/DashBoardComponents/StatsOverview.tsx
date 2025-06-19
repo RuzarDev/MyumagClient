@@ -21,9 +21,8 @@ const StatsOverview = ({ data }) => {
     }, 0);
     return acc + orderProfit;
   }, 0);
+  console.log(profit)
   const avgCheck = totalAmount/data.length;
-  console.log(profit);
-  console.log(totalAmount);
   return (
     <div>
       <h2 className="mb-4 text-lg font-medium text-gray-700">Выручка сегодня</h2>
@@ -38,7 +37,7 @@ const StatsOverview = ({ data }) => {
         />
         <StatsCard 
           title="Прибыль" 
-          value={formatCurrency(profit)}
+          value={profit}
           change={data.profitChange}
           icon={<DollarSign className="h-5 w-5" />}
           iconBg="bg-green-100"

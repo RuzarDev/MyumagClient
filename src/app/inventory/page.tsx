@@ -94,7 +94,7 @@ const Page = () => {
       accessor: 'cost',
       cell: (value: number) => (
         <span className="text-slate-600">
-          {value > 0 ? `${value.toLocaleString('ru-RU')} ₽` : '—'}
+          {value > 0 ? `${value.toLocaleString('ru-RU')} KZT` : '—'}
         </span>
       )
     },

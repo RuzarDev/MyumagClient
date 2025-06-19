@@ -10,6 +10,8 @@ import { OrderItem, Product, Client } from '@/types';
 import { useEffect, useState } from 'react';
 import Modal from '@/components/Modal';
 import api from "@/data/dataBase";
+import { useRouter } from 'next/navigation';
+
 type ShiftItem = {
   id: number; // или string, в зависимости от твоих данных
   // другие поля, если есть
@@ -36,6 +38,7 @@ function Page() {
   const [openSettingsModal, setOpenSettingsModal] = useState(false);
 
   const totalAmount = orderItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const router = useRouter()
 
   const handlePaymentComplete = () => {
     setIsPaymentModalOpen(false);
@@ -109,8 +112,8 @@ function Page() {
 
     try {
       console.log(payload);
-      const res = await api.post('/orders',payload)
-      console.log('Заказ успешно отпр авлен:', res.data);
+      const res = await api.post('/order',payload)
+      console.log('Заказ успешно отправлен:', res.data);
       handlePaymentComplete(); // очищаем корзину после успешной отправки
     } catch (error) {
       console.error('Ошибка при отправке заказа:', error);
@@ -123,8 +126,8 @@ function Page() {
       try {
         const [menuRes, shiftRes, categoryRes] = await Promise.all([
           api.get('/menu'),
-          api.get('posShift'),
-          api.get('/categories'),
+          api.get('/posShift'),
+          api.get('/menu/categories'),
         ]);
 
         setMenuData(menuRes.data);
@@ -175,6 +178,7 @@ function Page() {
     setShift((prevState)=>{
       return {...prevState, closeModal: false};
     })
+    router.push('/dashboard')
   }catch (e){
     console.log('error', e);
   }

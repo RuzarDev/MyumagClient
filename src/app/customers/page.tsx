@@ -146,7 +146,7 @@ const Page = () => {
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <h2 className="text-xl font-semibold text-slate-800">Customers</h2>
+        <h2 className="text-xl font-semibold text-slate-800"></h2>
 
         <div className="flex items-center gap-3">
           <Link href={'/customers/add'} className="px-3 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors flex items-center">

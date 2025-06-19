@@ -1,6 +1,8 @@
 'use client';
 import React, { useState } from 'react';
 import { parse } from 'date-fns';
+import {getDateKey,getTotalAmountPerDate} from "@/lib/utils";
+
 
 const RevenueChart = ({ data }) => {
   const [activeTab] = useState('day');
@@ -22,25 +24,6 @@ const RevenueChart = ({ data }) => {
   const avgCheck = totalAmount / data.length;
 
   // Функция для извлечения ключа (день, неделя, месяц) для группировки
-  const getDateKey = (orderDate: string) => {
-    const parsed = parse(orderDate, 'dd.MM.yyyy HH:mm', new Date());
-    return parsed.toISOString().split('T')[0]; // По умолчанию группировка по дням
-  };
-
-  // Функция для подсчета суммы по группе
-  const getTotalAmountPerDate = (orders) => {
-    const result: Record<string, number> = {};
-
-    orders.forEach(order => {
-      const dateKey = getDateKey(order.orderDate);
-      if (!result[dateKey]) {
-        result[dateKey] = 0;
-      }
-      result[dateKey] += order.totalAmount;
-    });
-
-    return result;
-  };
 
 
   // Группировка данных в зависимости от выбранного таба

@@ -5,7 +5,6 @@ import {
   Users,
   Package,
   Receipt,
-  FileText,
   Settings,
   ChevronDown,
   LogOut,
@@ -16,7 +15,6 @@ import {
 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import axios from 'axios';
 import CashImg from "@/data/free-icon-cashier-4901369.png";
 import Image from 'next/image';
 import api from "@/data/dataBase";
@@ -49,26 +47,26 @@ const Sidebar = () => {
   };
 
   const navItems = [
-    { path: '/dashboard', name: 'Dashboard', icon: <BarChart3 size={20} /> },
-    { path: '/customers', name: 'Customers', icon: <Users size={20} /> },
-    { path: '/transaction', name: 'Transactions', icon: <Receipt size={20} /> },
-    { path: '/menu', name: 'Menu', icon: <Coffee size={20} /> },
-    { path: '/shift', name: 'Shifts', icon: <HandCoins size={20} /> },
+    { path: '/dashboard', name: 'Статистика', icon: <BarChart3 size={20} /> },
+    { path: '/customers', name: 'Покупатели', icon: <Users size={20} /> },
+    { path: '/transaction', name: 'Чеки', icon: <Receipt size={20} /> },
+    { path: '/menu', name: 'Меню', icon: <Coffee size={20} /> },
+    { path: '/shift', name: 'Смены', icon: <HandCoins size={20} /> },
     {
-      name: 'Warehouse',
+      name: 'Склад',
       icon: <Warehouse size={20} />,
       key: 'warehouse',
       children: [
-        { path: '/supply', name: 'Supply', icon: <Truck size={18} /> },
-        { path: '/inventory', name: 'Inventory', icon: <Package size={18} /> },
+        { path: '/supply', name: 'Поставки', icon: <Truck size={18} /> },
+        { path: '/inventory', name: 'Остатки', icon: <Package size={18} /> },
       ]
     },
     {
-      name: 'Settings',
+      name: 'Настройки',
       icon: <Settings size={20} />,
       key: 'settings',
       children: [
-        { path: '/settingsEmployees', name: 'Employees', icon: <Users size={18} /> },
+        { path: '/settingsEmployees', name: 'Сотрудники', icon: <Users size={18} /> },
       ]
     }
   ];
@@ -162,7 +160,7 @@ const Sidebar = () => {
                 onClick={() => logout()}
               >
                 <LogOut size={20} className="mr-3" />
-                Logout
+                Выйти
               </Link>
             </li>
           </ul>
@@ -176,9 +174,7 @@ const Sidebar = () => {
           </div>
           <div className="ml-2">
             <p className="text-sm font-medium text-slate-700">{admin?.phone}</p>
-            <p className="text-xs text-slate-500">Urazov Pos</p>
           </div>
-          <ChevronDown size={18} className="ml-auto text-slate-400" />
         </div>
       </div>
     </aside>

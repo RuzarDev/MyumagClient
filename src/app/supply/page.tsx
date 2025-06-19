@@ -28,52 +28,7 @@ interface SupplyOrder {
   debt: number;
 }
 
-const supplyData: SupplyOrder[] = [
-  {
-    id: '122',
-    date: '26 апреля, 01:10',
-    supplier: 'Metro',
-    warehouse: 'Склад 1',
-    items: 'Большой макаронс, доставка',
-    comment: '—',
-    status: 'Unpaid',
-    amount: 9500,
-    debt: 9500
-  },
-  {
-    id: '123',
-    date: '26 апреля, 01:10',
-    supplier: 'Metro',
-    warehouse: 'Склад 1',
-    items: 'Моти',
-    comment: '—',
-    status: 'Unpaid',
-    amount: 6600,
-    debt: 6600
-  },
-  {
-    id: '124',
-    date: '26 апреля, 01:10',
-    supplier: 'Metro',
-    warehouse: 'Склад 1',
-    items: 'Молоко',
-    comment: '—',
-    status: 'Unpaid',
-    amount: 11100,
-    debt: 11100
-  },
-  {
-    id: '125',
-    date: '26 апреля, 01:10',
-    supplier: 'Metro',
-    warehouse: 'Склад 1',
-    items: 'Клаб сэндвич Курица',
-    comment: '—',
-    status: 'Unpaid',
-    amount: 10500,
-    debt: 10500
-  }
-];
+
 
 const Page = () => {
   const [selectedOrder, setSelectedOrder] = useState();
@@ -81,7 +36,7 @@ const Page = () => {
   const [status, setStatus] = useState('All');
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [orders, setOrders] = useState([]);
-  const [setMenuData] = useState([]);
+  const [menuData,setMenuData] = useState([]);
   const router = useRouter()
   useEffect(() => {
     const checkToken = async () => {
@@ -173,7 +128,7 @@ fetchData()
       accessor: 'amount',
       cell: (value: number) => (
         <span className="font-medium text-slate-800">
-          {value.toLocaleString('ru-RU')} ₽
+          {value.toLocaleString('ru-RU')} KZT
         </span>
       )
     },
@@ -307,7 +262,7 @@ d-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
         )}
         <div className="flex items-center justify-between">
           <div className="text-sm text-slate-500">
-            Showing <span className="font-medium">{orders.length}</span> of <span className="font-medium">{supplyData.length}</span> orders
+            Showing <span className="font-medium">{orders.length}</span> of <span className="font-medium">{menuData.length}</span> orders
           </div>
 
           <div className="flex items-center space-x-2">

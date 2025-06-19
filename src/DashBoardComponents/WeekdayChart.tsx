@@ -29,7 +29,7 @@ const WeekdayChart: React.FC<WeekdayChartProps> = ({ data }) => {
                   </div>
                   
                   <div className="absolute top-full left-1/2 mt-2 -translate-x-1/2 rounded bg-gray-800 px-2 py-1 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100">
-                    {new Intl.NumberFormat('ru-RU').format(item.value)} ₽
+                    {new Intl.NumberFormat('ru-RU').format(item.value)}
                   </div>
                 </div>
               );

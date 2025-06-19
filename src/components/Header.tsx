@@ -8,15 +8,15 @@ const Header = () => {
   const location = usePathname();
   
   const pageTitles: Record<string, string> = {
-    '/': 'dashboard',
-    '/customers': 'Customers',
-    '/products': 'Products',
-    '/transaction': 'Transactions',
-    '/menu/add':"Add item",
-    '/menu': "Menu",
-    '/supply': "Supply",
-    '/inventory': "Inventory",
-    '/settingsEmployees': "settingsEmployees",
+    '/': 'Статистка',
+    '/customers': 'Покупатели',
+    '/transaction': 'Чеки',
+    '/menu/add':"Добавить товар",
+    '/menu': "Меню",
+    '/supply': "Поставки",
+    '/inventory': "Остатки",
+    '/settingsEmployees': "Настройка сотрудников",
+    '/shift':"Смены"
   };
   
   const pageTitle = pageTitles[location] || 'dashboard';

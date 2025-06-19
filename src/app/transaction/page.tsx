@@ -106,7 +106,7 @@ const Page = () => {
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-4">
-        <h2 className="text-xl font-semibold text-slate-800">Transactions</h2>
+        <h2 className="text-xl font-semibold text-slate-800"></h2>
 
         <div className="w-full relative max-w-md">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
