@@ -126,7 +126,7 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit}>
           <Input
-            type="tel"
+            type="text"
             placeholder="Phone number"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
