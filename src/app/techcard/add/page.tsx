@@ -13,7 +13,7 @@ const Page = () => {
         { id: Date.now(), product: '', quantity: 0, unitCost: 0, totalCost: 0,ingredientId: 0}
     ]);
 
-    const [ingredientsData, setIngredientsData] = useState([]
+    const [ingredientsData, setIngredientsData] = useState([])
 
 
 
