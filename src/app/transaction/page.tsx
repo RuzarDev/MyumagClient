@@ -46,21 +46,21 @@ const Page = () => {
 
   const columns = [
     {
-      header: 'Receipt #',
+      header: 'Номер',
       accessor: 'id',
       cell: (value: string) => (
         <span className="font-medium text-slate-800">{value}</span>
       )
     },
     {
-      header: 'Date',
+      header: 'Дата',
       accessor: 'orderDate',
       cell: (value: string) => (
         <span className="text-slate-600">{value.split('T')[0]}</span>
       )
     },
     {
-      header: 'Amount',
+      header: 'Сумма',
       accessor: 'totalAmount',
       cell: (value: number) => (
         <span className="font-medium text-slate-800">
@@ -69,7 +69,7 @@ const Page = () => {
       )
     },
     {
-      header: 'Customer',
+      header: 'Покупатель',
       accessor: 'customerId',
       cell: (value: number) => (
         <span className="text-slate-600">
@@ -78,7 +78,7 @@ const Page = () => {
       )
     },
     {
-      header: 'Profit',
+      header: 'Прибыль',
       accessor: 'profit',
       cell: (value: number) => (
         <span className="font-medium text-slate-800">
@@ -96,7 +96,7 @@ const Page = () => {
             className="p-1 rounded-md hover:bg-slate-100 text-slate-500"
             onClick={() => setSelectedOrder(row)}
           >
-            View
+            Посмотреть
           </button>
         </div>
       )

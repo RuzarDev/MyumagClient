@@ -55,7 +55,7 @@ const Page = () => {
 
   const columns = [
     {
-      header: 'Id',
+      header: 'Номер',
       accessor: 'id',
       cell: (value: string) => (
         <div className="inline-flex items-center justify-center bg-slate-100 px-2.5 py-1 rounded text-sm font-medium text-slate-800">
@@ -64,7 +64,7 @@ const Page = () => {
       )
     },
     {
-      header: 'Name',
+      header: 'Имя',
       accessor: 'name',
       cell: (value: string) => (
         <div className="flex items-center">
@@ -76,14 +76,14 @@ const Page = () => {
       )
     },
     {
-      header: 'Category',
+      header: 'Категория',
       accessor: 'category',
       cell: (value: string) => (
         <span className="text-slate-600">{value}</span>
       )
     },
     {
-      header: 'Cost',
+      header: 'Себестоимость',
       accessor: 'cost',
       cell: (value: number) => (
         <span className="text-slate-600">
@@ -92,7 +92,7 @@ const Page = () => {
       )
     },
     {
-      header: 'Price',
+      header: 'Цена',
       accessor: 'price',
       cell: (value: number) => (
         <span className="font-medium text-slate-800">
@@ -123,13 +123,10 @@ const Page = () => {
         <div className="flex items-center gap-3">
           <Link href='/menu/add' className="px-3 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors flex items-center">
             <Plus size={16} className="mr-1.5" />
-            Add Item
+            Добавить товар
           </Link>
 
-          <button className="px-3 py-2 text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors flex items-center">
-            <Download size={16} className="mr-1.5" />
-            Export
-          </button>
+
         </div>
       </div>
 
@@ -140,7 +137,7 @@ const Page = () => {
             type="text"
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
-            placeholder="Search menu items..."
+            placeholder="Поиск..."
             className="w-full pl-10 pr-4 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
@@ -156,11 +153,7 @@ const Page = () => {
             ))}
           </select>
 
-          <button className="flex items-center px-3 py-2 text-sm text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-50">
-            <Filter size={16} className="mr-1.5" />
-            Filters
-            <ChevronDown size={16} className="ml-1.5" />
-          </button>
+
         </div>
       </div>
 
@@ -177,7 +170,7 @@ const Page = () => {
 
         <div className="flex items-center space-x-2">
           <button className="px-3 py-2 text-sm text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed">
-            Previous
+            Назад
           </button>
           <button className="px-3 py-2 text-sm text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors">
             1
@@ -189,7 +182,7 @@ const Page = () => {
             3
           </button>
           <button className="px-3 py-2 text-sm text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-50">
-            Next
+            Вперед
           </button>
         </div>
       </div>

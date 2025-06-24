@@ -59,7 +59,7 @@ const Page = () => {
 
   const columns = [
     {
-      header: 'Id',
+      header: 'Номер',
       accessor: 'id',
       cell: (value: string) => (
         <div className="inline-flex items-center justify-center bg-slate-100 px-2.5 py-1 rounded text-sm font-medium text-slate-800">
@@ -68,7 +68,7 @@ const Page = () => {
       )
     },
     {
-      header: 'Opened',
+      header: 'Открыто',
       accessor: 'openedAt',
       cell: (value: Date) =>{
         const date = new Date(value).toLocaleString('ru-RU');
@@ -85,7 +85,7 @@ const Page = () => {
       }
     },
     {
-      header: 'Closed',
+      header: 'Закрыто',
       accessor: 'closedAt',
       cell: (value: Date) =>{
         const date = new Date(value).toLocaleString('ru-RU');
@@ -104,7 +104,7 @@ const Page = () => {
 
     },
     {
-      header: 'Cash',
+      header: 'Наличными',
       accessor: 'cash',
       cell: (value: number) => (
         <span className="text-slate-600">
@@ -112,7 +112,7 @@ const Page = () => {
         </span>
       )
     }, {
-      header: 'Card',
+      header: 'Безналичными',
       accessor: 'card',
       cell: (value: number) => (
         <span className="text-slate-600">
@@ -121,7 +121,7 @@ const Page = () => {
       )
     },
     {
-      header: 'Cash Pool',
+      header: 'Остаток наличных',
       accessor:'cashPool',
       cell: (value: number) => (
         <span className="font-medium text-slate-800">
@@ -130,7 +130,7 @@ const Page = () => {
       )
     },
     {
-      header: 'Opened cash drawer',
+      header: 'Наличные при открытии',
       accessor: 'openedCashDrawer',
       cell: (value: number) => (
         <span className="font-medium text-slate-800">
@@ -139,7 +139,7 @@ const Page = () => {
       )
     },
     {
-      header: 'Closed cash drawer',
+      header: 'Наличные при закрытии',
       accessor: 'closedCashDrawer',
       cell: (value: number) => (
         <span className="font-medium text-slate-800">
@@ -148,7 +148,7 @@ const Page = () => {
       )
     },
     {
-      header: 'Report',
+      header: 'Отчет',
       accessor: 'closedCashDrawer', // всё ещё нужен для сортировки по умолчанию
       cell: (_: number, row: shiftState) => {
         const opened = row.openedCashDrawer || 0;

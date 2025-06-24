@@ -4,12 +4,11 @@ import StatsOverview from './StatsOverview';
 import PopularProducts from './PopularProducts';
 import AnalyticsCharts from './AnalyticsCharts';
 import { salesData } from '../data/mockData';
-import { format, toZonedTime } from 'date-fns-tz';
+import { toZonedTime } from 'date-fns-tz';
 import api from "@/data/dataBase";
 import RevenueDashboard from "@/components/revenue-dashboard";
-import {getDateKey,getTotalAmountPerDate} from "@/lib/utils";
-import {eachDayOfInterval, parse} from "date-fns";
-import {formatToRussianDate, getIsoString} from "@/app/utils/getIsoString";
+import { parse, format} from "date-fns";
+import {buildDateValueMap} from "@/app/utils/getIsoString";
 
 const Dashboard: React.FC = () => {
   const timeZone = 'Asia/Almaty';
@@ -62,28 +61,9 @@ const Dashboard: React.FC = () => {
 
   const currentData = matchedDate ? salesData[matchedDate] : salesData["2024-05-01"];
 
-  const filteredData = Object.entries(getTotalAmountPerDate(filteredOrders)).map(
-      ([dateKey, totalAmount]) => {
-        const humanDate = formatToRussianDate(dateKey);
-        return {
-          date: humanDate,
-          value: totalAmount
-        };
-      }
-  ).reverse();
-
-  const allDate = eachDayOfInterval({ start: startDate, end: endDate })
-      .map(item => {
-        const dateStr = format(item, 'yyyy-MM-dd');
-        return { date: formatToRussianDate(dateStr), value: 0 };
-      })
-      .map(item => {
-        const match = filteredData.find(fd => fd.date === item.date);
-        return {
-          date: item.date,
-          value: match ? match.value : item.value
-        };
-      });
+  const allDate = buildDateValueMap(startDate, endDate, filteredOrders, 'day');
+  const allMonth = buildDateValueMap(startDate, endDate, filteredOrders, 'month');
+  console.log(allDate)
 
 
 
@@ -98,7 +78,7 @@ const Dashboard: React.FC = () => {
       <main className="container mx-auto px-4 py-8">
         <StatsOverview data={dailyOrders} />
         <div className="mt-8">
-          <RevenueDashboard data={allDate}/>
+          <RevenueDashboard day={allDate} month={allMonth} />
         </div>
         <div className="mt-8">
           <PopularProducts data={orders}/>

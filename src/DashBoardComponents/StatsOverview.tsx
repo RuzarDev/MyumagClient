@@ -10,7 +10,7 @@ const StatsOverview = ({ data }) => {
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('ru-RU', {
       style: 'currency',
-      currency: 'RUB',
+      currency: 'KZT',
       minimumFractionDigits: 2
     }).format(value);
   };
@@ -22,7 +22,7 @@ const StatsOverview = ({ data }) => {
     return acc + orderProfit;
   }, 0);
   console.log(profit)
-  const avgCheck = totalAmount/data.length;
+  const avgCheck =  totalAmount/data.length || 0;
   return (
     <div>
       <h2 className="mb-4 text-lg font-medium text-gray-700">Выручка сегодня</h2>
@@ -53,8 +53,8 @@ const StatsOverview = ({ data }) => {
           negative={data.visitorsChange}
         />
         <StatsCard 
-          title="Средний чек" 
-          value={avgCheck.toLocaleString()}
+          title="Средний чек"
+          value={avgCheck.toLocaleString() || 0}
           change={data.averageCheckChange}
           icon={<ShoppingCart className="h-5 w-5" />}
           iconBg="bg-amber-100"

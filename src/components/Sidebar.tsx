@@ -11,7 +11,7 @@ import {
   Coffee,
   Truck,
   Warehouse,
-  HandCoins,
+  HandCoins, Apple, BookOpen
 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
@@ -40,6 +40,7 @@ const Sidebar = () => {
   const [openDropdowns, setOpenDropdowns] = useState<{ [key: string]: boolean }>({
     warehouse: true,
     settings: true,
+    menu:true
   });
 
   const toggleDropdown = (key: string) => {
@@ -50,8 +51,17 @@ const Sidebar = () => {
     { path: '/dashboard', name: 'Статистика', icon: <BarChart3 size={20} /> },
     { path: '/customers', name: 'Покупатели', icon: <Users size={20} /> },
     { path: '/transaction', name: 'Чеки', icon: <Receipt size={20} /> },
-    { path: '/menu', name: 'Меню', icon: <Coffee size={20} /> },
     { path: '/shift', name: 'Смены', icon: <HandCoins size={20} /> },
+    {
+      name: 'меню',
+      icon: <Warehouse size={20} />,
+      key: 'menu',
+      children: [
+        { path: '/menu', name: 'Товары', icon: <Coffee size={20} /> },
+        { path: '/ingredients', name: 'Ингридиенты', icon: <Apple size={20} /> },
+        { path: '/techcard', name: 'Тех карты', icon: <BookOpen size={20} /> },
+      ]
+    },
     {
       name: 'Склад',
       icon: <Warehouse size={20} />,
@@ -61,14 +71,6 @@ const Sidebar = () => {
         { path: '/inventory', name: 'Остатки', icon: <Package size={18} /> },
       ]
     },
-    {
-      name: 'Настройки',
-      icon: <Settings size={20} />,
-      key: 'settings',
-      children: [
-        { path: '/settingsEmployees', name: 'Сотрудники', icon: <Users size={18} /> },
-      ]
-    }
   ];
 
   async function logout() {

@@ -1,20 +1,32 @@
-import {format, isValid, parse} from "date-fns";
-import {ru} from "date-fns/locale";
+import {eachDayOfInterval, parse, format, eachMonthOfInterval} from 'date-fns';
+import { ru } from 'date-fns/locale';
+import {getTotalAmountPerDate} from "@/lib/utils";
+type DateValue = {
+    date: string;
+    value: number;
+};
 
+export const buildDateValueMap = (
+    startDate: Date,
+    endDate: Date,
+    orders: [],
+    type: 'day' | 'month'
+): DateValue[] => {
+    const totalAmountPerDate = getTotalAmountPerDate(orders, type);
+    const dateFormat = type === 'day' ? 'd MMMM' : 'MMMM';
 
+    const intervals =
+        type === 'day'
+            ? eachDayOfInterval({ start: startDate, end: endDate })
+            : eachMonthOfInterval({ start: startDate, end: endDate });
 
-export const formatToRussianDate = (dateStr: string) => {
-    // Try parsing with time first
-    let parsed = parse(dateStr, 'dd.MM.yyyy HH:mm', new Date());
+    return intervals.map(date => {
+        const key = format(date, type === 'day' ? 'yyyy-MM-dd' : 'yyyy-MM');
+        const totalAmount = totalAmountPerDate[key] ?? 0;
 
-    if (!isValid(parsed)) {
-        // Try ISO fallback
-        parsed = parse(dateStr, 'yyyy-MM-dd', new Date());
-    }
-
-    if (!isValid(parsed)) {
-        throw new Error(`Invalid date format: ${dateStr}`);
-    }
-
-    return format(parsed, 'd MMMM', { locale: ru });
+        return {
+            date: format(date, dateFormat, { locale: ru }),
+            value: totalAmount
+        };
+    });
 };

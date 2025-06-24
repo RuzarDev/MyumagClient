@@ -10,14 +10,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 
 
 
-const monthData = [
-  { date: 'Январь', value: 15000 },
-  { date: 'Февраль', value: 18000 },
-  { date: 'Март', value: 22000 },
-  { date: 'Апрель', value: 19000 },
-  { date: 'Май', value: 19850 },
-  { date: 'Июнь', value: 0 }
-];
+
 
 interface CustomTooltipProps {
   active?: boolean;
@@ -51,12 +44,11 @@ const formatYAxis = (value: number) => {
 
 export default function RevenueDashboard(props) {
   const [activeTab, setActiveTab] = useState('день');
-  const dayData = props.data
+  const monthData = props.month;
+  const dayData = props.day
 
   const getData = () => {
     switch (activeTab) {
-      case 'неделя':
-        return weekData;
       case 'месяц':
         return monthData;
       default:
@@ -86,7 +78,7 @@ export default function RevenueDashboard(props) {
                 День
               </TabsTrigger>
 
-              {props.data.length>=32 &&
+              {dayData.length>=32 &&
                   <TabsTrigger
                       value="месяц"
                       className="px-6 py-2 data-[state=active]:bg-blue-600 data-[state=active]:text-white"
@@ -122,7 +114,7 @@ export default function RevenueDashboard(props) {
                         tickLine={false}
                         tick={{ fontSize: 12, fill: '#6b7280' }}
                         tickFormatter={formatYAxis}
-                        domain={[0, getMaxValue() * 1.1]}
+                        domain={[0, getMaxValue(  ) * 1.1]}
                     />
                     <Tooltip content={<CustomTooltip />} />
                     <Line

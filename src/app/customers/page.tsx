@@ -46,7 +46,7 @@ const Page = () => {
 
   const columns = [
     {
-      header: 'Customer',
+      header: 'Покупатель',
       accessor: 'name',
       cell: (value, row) => (
         <div className="flex items-center">
@@ -61,7 +61,7 @@ const Page = () => {
       ),
     },
     {
-      header: 'Contact',
+      header: 'Контакты',
       accessor: 'Customerphone',
       cell: (value, row) => (
         <div>
@@ -79,7 +79,7 @@ const Page = () => {
       ),
     },
     {
-      header: 'Total Spent',
+      header: 'общая выручка',
       accessor: 'totalSpent',
       cell: (value: number) => (
         <span className="font-medium text-slate-800">
@@ -88,7 +88,7 @@ const Page = () => {
       ),
     },
     {
-      header: 'Orders',
+      header: 'Чеки',
       accessor: 'orders',
       cell: (value: number) => (
         <span className="text-slate-600">
@@ -97,7 +97,7 @@ const Page = () => {
       ),
     },
     {
-      header: 'Avg. Check',
+      header: 'Средний чек',
       accessor: 'avgCheck',
       cell: (value: number) => (
         <span className="text-slate-600">
@@ -151,13 +151,10 @@ const Page = () => {
         <div className="flex items-center gap-3">
           <Link href={'/customers/add'} className="px-3 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors flex items-center">
             <Plus size={16} className="mr-1.5" />
-            Add Customer
+            Добавить покупателя
           </Link>
 
-          <button className="px-3 py-2 text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors flex items-center">
-            <Download size={16} className="mr-1.5" />
-            Export
-          </button>
+
         </div>
       </div>
 
@@ -168,22 +165,15 @@ const Page = () => {
             type="text"
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
-            placeholder="Search customers..."
+            placeholder="Поиск покупателей..."
             className="w-full pl-10 pr-4 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
 
         <div className="flex items-center gap-2 w-full md:w-auto">
-          <button className="flex items-center px-3 py-2 text-sm text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-50">
-            <Filter size={16} className="mr-1.5" />
-            Filters
-            <ChevronDown size={16} className="ml-1.5" />
-          </button>
 
-          <button className="flex items-center px-3 py-2 text-sm text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-50">
-            <span>Group</span>
-            <ChevronDown size={16} className="ml-1.5" />
-          </button>
+
+
         </div>
       </div>
 
@@ -203,7 +193,7 @@ const Page = () => {
 
         <div className="flex items-center space-x-2">
           <button className="px-3 py-2 text-sm text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed">
-            Previous
+            Назад
           </button>
           <button className="px-3 py-2 text-sm text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors">
             1
@@ -215,7 +205,7 @@ const Page = () => {
             3
           </button>
           <button className="px-3 py-2 text-sm text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-50">
-            Next
+            Вперед
           </button>
         </div>
       </div>

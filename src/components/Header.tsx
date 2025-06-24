@@ -16,10 +16,12 @@ const Header = () => {
     '/supply': "Поставки",
     '/inventory': "Остатки",
     '/settingsEmployees': "Настройка сотрудников",
-    '/shift':"Смены"
+    '/shift':"Смены",
+    '/ingredients':"Ингредиенты",
+    '/ingredients/add':"Добавить ингридиент",
   };
   
-  const pageTitle = pageTitles[location] || 'dashboard';
+  const pageTitle = pageTitles[location]
   
   return (
     <header className="bg-white border-b border-slate-200 px-4 py-3 sticky top-0 z-10">

@@ -77,7 +77,7 @@ fetchData()
 
   const columns = [
     {
-      header: 'Order #',
+      header: 'Номер',
       accessor: 'id',
       cell: (value: string) => (
         <div className="inline-flex items-center justify-center bg-slate-100 px-2.5 py-1 rounded text-sm font-medium text-slate-800">
@@ -86,7 +86,7 @@ fetchData()
       )
     },
     {
-      header: 'Date',
+      header: 'Дата',
       accessor: 'date',
       cell: (value: string) => (
         <div className="flex items-center">
@@ -96,7 +96,7 @@ fetchData()
       )
     },
     {
-      header: 'Supplier',
+      header: 'Поставщик',
       accessor: 'supplier',
       cell: (value: string) => (
         <div className="flex items-center">
@@ -109,7 +109,7 @@ fetchData()
     },
 
     {
-      header: 'Items',
+      header: 'Предметы',
       accessor: 'items',
       cell: (value) => (
         <div>
@@ -124,7 +124,7 @@ fetchData()
     },
 
     {
-      header: 'Amount',
+      header: 'Стоимость',
       accessor: 'amount',
       cell: (value: number) => (
         <span className="font-medium text-slate-800">
@@ -140,7 +140,6 @@ fetchData()
       cell: (_, row) => (
         <div className="flex items-center space-x-2">
           <button className="p-1 rounded-md hover:bg-slate-100">
-            <Eye size={16} className="text-slate-500" />
           </button>
           <button
             className="p-1 rounded-md hover:bg-slate-100"
