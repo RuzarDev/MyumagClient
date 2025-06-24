@@ -3,10 +3,12 @@ import React, {useEffect, useState} from 'react';
 import {validateToken} from "@/app/utils/validateToken";
 import api from "@/data/dataBase";
 import {router} from "next/client";
+import {useRouter} from "next/navigation";
 
 const Page = () => {
-    const [search, setSearch] = useState({name:'',category:'',unit:'',addCategoryToggle:false})
+    const [search, setSearch] = useState({name:'',category:'',unit:'',addCategoryToggle:false,cost:0})
     const [ingredientsData, setIngredientsData] = useState([])
+    const router = useRouter()
     useEffect(() => {
         const checkToken = async () => {
             try {
@@ -33,11 +35,12 @@ const Page = () => {
 
     function fetchData(e: React.MouseEvent<HTMLButtonElement>) {
         try {
-        const res = api.post(`/ingredients`, {name:search.name, category:search.category, unit:search.unit});
-        router.push('/ingredients');
+        const res = api.post(`/ingredients`, {name:search.name, category:search.category, unit:search.unit,cost:search.cost});
         }catch (e){
             console.log('Failed to fetch data', e);
         }
+        router.push('/ingredients');
+
     }
 
     return (
@@ -49,6 +52,16 @@ const Page = () => {
                     type="text"
                     value={search.name}
                     onChange={(e) => setSearch({...search, name: e.target.value})}
+                />
+
+            </div>
+            <div className="flex items-center mt-10">
+                <p className='w-[200px]'>Стоимость</p>
+                <input
+                    className="w-3/12 px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    type="number"
+                    value={search.cost}
+                    onChange={(e) => setSearch({...search, cost: e.target.value})}
                 />
 
             </div>
@@ -92,6 +105,7 @@ const Page = () => {
                     onChange={(e) => setSearch({...search, unit: e.target.value})}
                     className="w-3/12 px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 >
+                    <option value="Единица измерения">шт</option>
                     <option value="шт">шт</option>
                     <option value="кг">кг</option>
                     <option value="л">л</option>

@@ -20,8 +20,11 @@ const Page = () => {
             if (!isValid) router.push('/login');
 
             try {
-                const res = await api.get('/ingredients/tech-card');
-                setTechCards(res.data);
+                const res = await api.get('/menu');
+                console.log(res.data)
+                setTechCards(res.data.filter(item => item.ingredients?.length >= 1));
+
+
             } catch (err) {
                 console.error('Ошибка при загрузке техкарт:', err);
             }
@@ -53,7 +56,14 @@ const Page = () => {
             header: 'Себестоимость',
             accessor: 'cost',
             cell: (value) => (
-                <span className="text-slate-600">{value} ₽</span>
+                <span className="text-slate-600">{value} </span>
+            ),
+        },
+        {
+            header: 'Цена',
+            accessor: 'price',
+            cell: (value) => (
+                <span className="text-slate-600">{value} </span>
             ),
         },
     ];

@@ -43,7 +43,8 @@ const Page = () => {
     const fetchData = async () => {
       try {
         const res = await api.get('/menu');
-        setMenuData(res.data); // здесь просто устанавливаем данные
+        setMenuData(res.data.filter(item => item.ingredients?.length == 0)); // здесь просто устанавливаем данные
+
       } catch (e) {
         console.error('fetch data failed', e);
       }

@@ -39,6 +39,31 @@ function Page() {
 
   const totalAmount = orderItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const router = useRouter()
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [menuRes, shiftRes, categoryRes,techCardsData] = await Promise.all([
+          api.get('/menu'),
+          api.get('/posShift'),
+          api.get('/menu/categories'),
+        ]);
+        setMenuData(menuRes.data);
+        setCategoryList(categoryRes.data);
+
+        const openedShift = shiftRes.data;
+        setShift(prev => ({
+          ...prev,
+          openedShift,
+          modal: openedShift.length === 0,
+        }));
+
+      } catch (e) {
+        console.error('Ошибка при загрузке данных:', e);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handlePaymentComplete = () => {
     setIsPaymentModalOpen(false);
@@ -47,7 +72,7 @@ function Page() {
 
   const addToOrder = (product: Product) => {
     const existingItem = orderItems.find(item => item.productId === product.id);
-
+    console.log(existingItem)
     if (existingItem) {
       updateQuantity(existingItem.id, existingItem.quantity + 1);
     } else {
@@ -59,7 +84,10 @@ function Page() {
         quantity: 1
       };
 
-      setOrderItems([...orderItems, newItem]);
+
+      setOrderItems(prevItems => [...prevItems, newItem]);
+
+      console.log('orderItems:', orderItems);
     }
   };
 
@@ -104,15 +132,15 @@ function Page() {
       employeeId: 1,
       orderDate: new Date().toISOString(),
       typeOfPayment,
-      menuItems: orderItems.map(item => ({
-        menuId: item.productId,
+      techCardItems: orderItems.map(item => ({
+        techCardId: item.productId,
         quantity: item.quantity
       }))
     };
 
     try {
       console.log(payload);
-      const res = await api.post('/order',payload)
+      const res = await api.post('/order/tech-card-order',payload)
       console.log('Заказ успешно отправлен:', res.data);
       handlePaymentComplete(); // очищаем корзину после успешной отправки
     } catch (error) {
@@ -121,33 +149,6 @@ function Page() {
     }
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [menuRes, shiftRes, categoryRes] = await Promise.all([
-          api.get('/menu'),
-          api.get('/posShift'),
-          api.get('/menu/categories'),
-        ]);
-
-        setMenuData(menuRes.data);
-        setCategoryList(categoryRes.data);
-
-        const openedShift = shiftRes.data;
-        console.log(openedShift);
-        setShift(prev => ({
-          ...prev,
-          openedShift,
-          modal: openedShift.length === 0,
-        }));
-
-      } catch (e) {
-        console.error('Ошибка при загрузке данных:', e);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   const onOpenShift = async () => {
     try {
@@ -183,7 +184,6 @@ function Page() {
     console.log('error', e);
   }
   }
-
 
   return (
     <div className="flex flex-col h-screen bg-gray-100">

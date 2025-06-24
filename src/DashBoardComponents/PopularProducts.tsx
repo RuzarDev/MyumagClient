@@ -6,7 +6,7 @@ const PopularProducts: React.FC = ({data}) => {
 
     orders.forEach((order: any) => {
       // Уникальные имена блюд в одном заказе
-      const uniqueItems = new Set(order.orderItems.map((item: any) => item.menu.name));
+      const uniqueItems = new Set(order.orderItems.map((item: any) => item.menu?.name));
 
       uniqueItems.forEach((name) => {
         itemCountMap[name] = (itemCountMap[name] || 0) + 1;

@@ -83,15 +83,7 @@ const Page = () => {
       </span>
             ),
         },
-        {
-            header: 'Сумма остатка',
-            accessor: 'amount',
-            cell: (value) => (
-                <span className="text-slate-500">
-        {value} {value ? 'исп.' : ''}
-      </span>
-            ),
-        },
+
     ];
 
 

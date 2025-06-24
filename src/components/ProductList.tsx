@@ -5,14 +5,15 @@ interface ProductListProps {
   products: Product[];
   activeCategory: string | null;
   addToOrder: (product: Product) => void;
+  techCards: Product[]
 }
 
-const ProductList: React.FC<ProductListProps> = ({ 
-  products, 
-  activeCategory, 
-  addToOrder 
+const ProductList: React.FC<ProductListProps> = ({
+  products,
+  activeCategory,
+  addToOrder, techCards
 }) => {
-  const filteredProducts = activeCategory 
+  const filteredProducts = activeCategory
     ? products.filter(product => product.category === activeCategory)
     : [];
 
@@ -20,7 +21,7 @@ const ProductList: React.FC<ProductListProps> = ({
     <div className="p-2 bg-gray-200">
       <div className="grid grid-cols-3 gap-2">
         {filteredProducts.map((product) => (
-          <div 
+          <div
             key={product.id}
             className="bg-white p-4 cursor-pointer hover:bg-gray-50"
             onClick={() => addToOrder(product)}
@@ -30,12 +31,8 @@ const ProductList: React.FC<ProductListProps> = ({
           </div>
         ))}
       </div>
-      
-      {filteredProducts.length === 0 && activeCategory && (
-        <div className="flex justify-center items-center h-48 text-gray-500">
-          Нет товаров в данной категории
-        </div>
-      )}
+
+
     </div>
   );
 };

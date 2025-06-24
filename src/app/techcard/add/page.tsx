@@ -5,7 +5,7 @@ import api from "@/data/dataBase";
 import {router} from "next/client";
 
 const Page = () => {
-    const [search, setSearch] = useState({name:'',category:'',unit:'',addCategoryToggle:false})
+    const [search, setSearch] = useState({name:'',category:'',unit:'',addCategoryToggle:false,price:''})
     const [techCardData, setTechCardData] = useState([])
     const [ingredients, setIngredients] = useState([
         { id: Date.now(), product: '', quantity: 0, unitCost: 0, totalCost: 0,ingredientId: 0}
@@ -32,18 +32,18 @@ const Page = () => {
                 console.error('Failed to fetch ingredients:', e);
             }
         };
-        const fetchTechCards = async () => {
+        const fetchData = async () => {
             try {
-                const res = await api.get('/ingredients/tech-card');
-                setTechCardData(res.data);
-            } catch (e) {
-                console.error('Failed to fetch ingredients:', e);
-            }
+                const res = await api.get('/menu');
+                setTechCardData(res.data.filter(item=>item.category==='Тех карта')); // здесь просто устанавливаем данные
 
+            } catch (e) {
+                console.error('fetch data failed', e);
+            }
         };
         fetchIngredients()
         checkToken()
-        fetchTechCards();
+        fetchData();
     }, []);
     const categories = [...new Set(techCardData.map(item=>item.category))];
 
@@ -91,11 +91,12 @@ const Page = () => {
         const data = {
             name: search.name,
             category: search.category,
+            price: search.price,
             ingredients: ingredientsPayload
         };
 
         try {
-            const res = await api.post('/ingredients/tech-card', data);
+            const res = await api.post('/menu', data);
             console.log('Успешно отправлено:', res.data);
         } catch (err) {
             console.error('Ошибка при отправке данных:', err);
@@ -105,12 +106,22 @@ const Page = () => {
     return (
         <div>
             <div className="flex items-center mt-10">
-                <p className='w-[200px]'>Имя</p>
+                <p className='w-[200px]'>Название</p>
                 <input
                     className="w-3/12 px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     type="text"
                     value={search.name}
                     onChange={(e) => setSearch({...search, name: e.target.value})}
+                />
+
+            </div>
+            <div className="flex items-center mt-10">
+                <p className='w-[200px]'>Стоимость</p>
+                <input
+                    className="w-3/12 px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    type="number"
+                    value={search.price}
+                    onChange={(e) => setSearch({...search, price: e.target.value})}
                 />
 
             </div>
@@ -213,7 +224,7 @@ const Page = () => {
 
             <button onClick={(e) => fetchData()}
                     className="border-green-500 mt-24 text-white bg-green-500 w-2/12 h-[35px] rounded-[10px]">
-            Save
+                Save
             </button>
         </div>
     );

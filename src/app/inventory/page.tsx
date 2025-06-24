@@ -146,7 +146,7 @@ const Page = () => {
       
       <DataTable
         columns={columns}
-        data={filteredItems}
+        data={filteredItems.filter(item=>item.ingredients.length===0)}
         onRowClick={(row) => console.log('Clicked on item:', row)}
       />
       

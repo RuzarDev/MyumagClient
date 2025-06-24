@@ -67,7 +67,6 @@ const Sidebar = () => {
       icon: <Warehouse size={20} />,
       key: 'warehouse',
       children: [
-        { path: '/supply', name: 'Поставки', icon: <Truck size={18} /> },
         { path: '/inventory', name: 'Остатки', icon: <Package size={18} /> },
       ]
     },
