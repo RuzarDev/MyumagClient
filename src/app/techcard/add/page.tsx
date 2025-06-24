@@ -64,7 +64,8 @@ const Page = () => {
                 let updated = { ...item, [field]: value };
 
                 if (field === 'product') {
-                    const product = ingredientsData.find(p => p.name === value);
+                    const product = ingredientsData.find(p => p?.name === value);
+
                     const unitCost = product?.cost || 0;
                     updated.unitCost = unitCost;
                     updated.totalCost = unitCost * (updated.quantity || 0);
