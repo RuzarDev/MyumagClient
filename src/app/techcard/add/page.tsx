@@ -2,9 +2,11 @@
 import React, {useEffect, useState} from 'react';
 import {validateToken} from "@/app/utils/validateToken";
 import api from "@/data/dataBase";
-import {router} from "next/client";
+import { useRouter } from "next/navigation";
+
 
 const Page = () => {
+    const router = useRouter()
     const [search, setSearch] = useState({name:'',category:'',unit:'',addCategoryToggle:false,price:''})
     const [techCardData, setTechCardData] = useState([])
     const [ingredients, setIngredients] = useState([
